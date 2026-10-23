@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "skills": [
+    "max-mode-cn",
+    "pc-control-max-mode",
+    "speckit",
+    "speckit-superpowers-bridge",
+    "superpowers",
+    "gstack"
+  ],
+  "files": [
+    {
+      "path": "config.example.json",
+      "sha256": "2ead152a002b5e13bda55dd4a9d212e7841b5c625371f85116e19d74923f48d4"
+    },
+    {
+      "path": "Install.ps1",
+      "sha256": "f8817a7128cc3737634b6c463e9472170b14fec10c05c5124a4a1b6953b3cb2f"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8f3cb256d79be8704b8f854d18c5324afbcf23c65c1c4f0f8969655c893c788c"
+    },
+    {
+      "path": "skills/gstack/SKILL.md",
+      "sha256": "6b586a9d99366b200d61339c85fdf8f5e17122a9d6e2ec79bcfaad6282cb2f66"
+    },
+    {
+      "path": "skills/max-mode-cn/agents/openai.yaml",
+      "sha256": "752ac94c6840fe57be43aaab0fff74da2e976169368a92a337768f55174ce3c0"
+    },
+    {
+      "path": "skills/max-mode-cn/SKILL.md",
+      "sha256": "ea5c564097e001459ec940fd8cf094f3126047ab49a0fea5b6919723ed3f5c4b"
+    },
+    {
+      "path": "skills/pc-control-max-mode/references/equipment-checks.md",
+      "sha256": "e201b95a9224deb631f36fc447476ce53af28b162397184cff226e604f65ce5d"
+    },
+    {
+      "path": "skills/pc-control-max-mode/SKILL.md",
+      "sha256": "6d25c50ef42f676afc57f82dea2cd2d527deca2afad3473073848c0f2d5ed464"
+    },
+    {
+      "path": "skills/speckit-superpowers-bridge/SKILL.md",
+      "sha256": "dc35931f8efa7d970edbb292e2439cf956cd3099baa2c7aeaef2984df6337ae2"
+    },
+    {
+      "path": "skills/speckit/assets/task-template.md",
+      "sha256": "d133ed475a5949a01d9ff8781c5bfde057e8f7059138831f0d354f1e68b7d6e3"
+    },
+    {
+      "path": "skills/speckit/SKILL.md",
+      "sha256": "2ab5bf3799b05ffa2e86a15b01564e9365bc7908a3d13a68660804a8ee196729"
+    },
+    {
+      "path": "skills/superpowers/SKILL.md",
+      "sha256": "130f2b3d9b3df9e7ba65e90442e655f25567f529ce502ed2b7426dcb675d00f5"
+    },
+    {
+      "path": "Test-Package.ps1",
+      "sha256": "39b5ac1752af0c8b74ffb6e1c23d5bb1c5cc65d7b5385e50ad9be51f684f633a"
+    }
+  ]
+}
