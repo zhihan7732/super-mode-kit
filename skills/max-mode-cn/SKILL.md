@@ -11,7 +11,7 @@ description: 当用户要求“超级模式”或“超级方案”处理软件�
 
 以当前 `SKILL.md` 的父目录为本技能目录，其父目录为技能根目录。所有兄弟技能均相对此根定位，不依赖固定盘符或当前 shell 工作目录。
 
-读取本目录 `settings.json`；没有配置时使用：中文产物、当前用户 Documents/CodexPlans 作为产物根目录。`artifact_root` 为空也使用该默认值；非空必须为绝对路径。无法取得 Documents 时使用用户目录下的 CodexPlans。无效 JSON 或无效路径须说明并修复配置，不能静默改写到未知目录。用户任务中指定的位置优先；项目根规则优先于默认约定。
+读取本目录 `settings.json`；schema 2 要求 `space_root` 和 `artifact_root` 为绝对路径。首次安装由安装器初始化，默认 Space 为当前用户 Documents/CodexSpaces，计划产物为 `<space_root>/plans`。`initialized_at` 为空时应提示完成初始化，不要静默选择未知目录。用户任务中指定的位置优先；项目根规则优先于默认约定。`telemetry` 固定为 false；项目知识库只有用户明确要求且目标技能可用时才使用。
 
 产物写入 `<artifact_root>/<项目名>/specs/<任务名>/`。项目名从仓库推断，任务名用稳定短名；替换路径分隔符、控制字符和 Windows 保留字符，防止名字越出根目录。目录已有同名任务时检查内容，避免覆盖其他任务。
 

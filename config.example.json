@@ -1,6 +1,10 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "space_root": "",
   "artifact_root": "",
   "language": "zh-CN",
-  "project_knowledge": "optional-explicit"
+  "project_knowledge": "optional-explicit",
+  "create_project_folders": true,
+  "telemetry": false,
+  "initialized_at": ""
 }

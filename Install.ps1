@@ -1,6 +1,9 @@
 param(
     [string]$SkillsRoot,
     [string]$ArtifactRoot,
+    [string]$SpaceRoot,
+    [switch]$SkipInitialization,
+    [switch]$Reconfigure,
     [switch]$CheckOnly
 )
 $ErrorActionPreference = 'Stop'
@@ -18,17 +21,22 @@ $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'manifest.json') -
 $settings = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'config.example.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $oldSettings = Join-Path $SkillsRoot 'max-mode-cn/settings.json'
 if (Test-Path -LiteralPath $oldSettings) { $settings = Get-Content -LiteralPath $oldSettings -Raw -Encoding UTF8 | ConvertFrom-Json }
-if ($settings.schema_version -ne 1 -or $settings.language -ne 'zh-CN' -or $settings.project_knowledge -ne 'optional-explicit') { throw 'Existing settings are incompatible. Correct settings before installing.' }
+if ($settings.schema_version -eq 1) {
+    $settings | Add-Member -NotePropertyName space_root -NotePropertyValue ''
+    $settings | Add-Member -NotePropertyName create_project_folders -NotePropertyValue $true
+    $settings | Add-Member -NotePropertyName telemetry -NotePropertyValue $false
+    $settings | Add-Member -NotePropertyName initialized_at -NotePropertyValue ''
+    $settings.schema_version = 2
+}
+if ($settings.schema_version -ne 2 -or $settings.language -ne 'zh-CN' -or $settings.project_knowledge -ne 'optional-explicit') { throw 'Existing settings are incompatible. Correct settings before installing.' }
 if ($PSBoundParameters.ContainsKey('ArtifactRoot')) {
     if (!$ArtifactRoot -or ![IO.Path]::IsPathRooted($ArtifactRoot)) { throw 'ArtifactRoot must be an absolute path.' }
     $settings.artifact_root = [IO.Path]::GetFullPath($ArtifactRoot)
 }
-if (!$settings.artifact_root) {
-    $documents = [Environment]::GetFolderPath('MyDocuments')
-    if (!$documents) { $documents = [Environment]::GetFolderPath('UserProfile') }
-    $settings.artifact_root = Join-Path $documents 'CodexPlans'
+if ($PSBoundParameters.ContainsKey('SpaceRoot')) {
+    if (!$SpaceRoot -or ![IO.Path]::IsPathRooted($SpaceRoot)) { throw 'SpaceRoot must be an absolute path.' }
+    $settings.space_root = [IO.Path]::GetFullPath($SpaceRoot)
 }
-if (![IO.Path]::IsPathRooted($settings.artifact_root)) { throw 'Configured artifact_root must be absolute.' }
 $conflicts = @($manifest.skills | Where-Object { Test-Path -LiteralPath (Join-Path $SkillsRoot $_) })
 Write-Output "Skills root: $SkillsRoot"
 Write-Output "Artifact root: $($settings.artifact_root)"
@@ -63,6 +71,9 @@ try {
     }
     $json = $settings | ConvertTo-Json -Depth 10
     [IO.File]::WriteAllText((Join-Path $SkillsRoot 'max-mode-cn/settings.json'), $json, (New-Object Text.UTF8Encoding($false)))
+    if (!$SkipInitialization -and (!$settings.initialized_at -or $Reconfigure)) {
+        & (Join-Path $PSScriptRoot 'Initialize.ps1') -SettingsPath (Join-Path $SkillsRoot 'max-mode-cn/settings.json') -Reconfigure:$Reconfigure
+    }
     & (Join-Path $PSScriptRoot 'Test-Package.ps1') -InstalledRoot $SkillsRoot | Write-Output
 } catch {
     $originalError = $_

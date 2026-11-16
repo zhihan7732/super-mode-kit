@@ -36,7 +36,8 @@ foreach ($name in $expectedNames) {
 }
 if ($InstalledRoot) {
     $settings = Get-Content -LiteralPath (Join-Path $skillRoot 'max-mode-cn/settings.json') -Raw -Encoding UTF8 | ConvertFrom-Json
-    if ($settings.schema_version -ne 1 -or $settings.language -ne 'zh-CN' -or $settings.project_knowledge -ne 'optional-explicit') { throw 'Unsupported installed configuration.' }
-    if ($settings.artifact_root -and ![IO.Path]::IsPathRooted($settings.artifact_root)) { throw 'artifact_root must be absolute.' }
+    if ($settings.schema_version -ne 2 -or $settings.language -ne 'zh-CN' -or $settings.project_knowledge -ne 'optional-explicit') { throw 'Unsupported installed configuration.' }
+    foreach ($key in @('space_root','artifact_root')) { if (!$settings.$key -or ![IO.Path]::IsPathRooted($settings.$key)) { throw "$key must be absolute." } }
+    if ($null -eq $settings.create_project_folders -or $settings.telemetry -ne $false) { throw 'Invalid installed initialization settings.' }
 }
 Write-Output "PASS: package integrity and six skill structures verified. Root: $skillRoot"

@@ -15,15 +15,19 @@
     },
     {
       "path": "config.example.json",
-      "sha256": "2ead152a002b5e13bda55dd4a9d212e7841b5c625371f85116e19d74923f48d4"
+      "sha256": "0189c695d578fc8604170478421527bab9a46325e1acb1c42729382cd5a94bbc"
+    },
+    {
+      "path": "Initialize.ps1",
+      "sha256": "63b406f6185fc3ce2a0ab24b1c5b5252363f036beb9d90bddac393098aff5dac"
     },
     {
       "path": "Install.ps1",
-      "sha256": "f8817a7128cc3737634b6c463e9472170b14fec10c05c5124a4a1b6953b3cb2f"
+      "sha256": "4912cc351e606cbbd09ddd33057d976c9ea6a46956de61b07a0b05def6300051"
     },
     {
       "path": "README.md",
-      "sha256": "8f3cb256d79be8704b8f854d18c5324afbcf23c65c1c4f0f8969655c893c788c"
+      "sha256": "6a34b8e57dac9702f703644d259958178b53787c1f4c96c39b73cc8fe0f7f040"
     },
     {
       "path": "skills/gstack/SKILL.md",
@@ -35,7 +39,7 @@
     },
     {
       "path": "skills/max-mode-cn/SKILL.md",
-      "sha256": "ea5c564097e001459ec940fd8cf094f3126047ab49a0fea5b6919723ed3f5c4b"
+      "sha256": "5fa0f5c32cb1dfee61c46e1680f39b6c9a32e5ecbc59071b6c495ea6d32ffa12"
     },
     {
       "path": "skills/pc-control-max-mode/references/equipment-checks.md",
@@ -63,7 +67,7 @@
     },
     {
       "path": "Test-Package.ps1",
-      "sha256": "39b5ac1752af0c8b74ffb6e1c23d5bb1c5cc65d7b5385e50ad9be51f684f633a"
+      "sha256": "bcecb166ed56bc0e08c6c27a64c1f6f1070969db5b50aa5d65f8a1732d12239b"
     }
   ]
 }
